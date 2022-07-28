@@ -20,7 +20,7 @@ def welcome():
     """
     # TODO: Your code here
     pass
-
+print("------------------------\nWELCOME TO COVID-19 DATA\n------------------------")
 
 def error(msg):
     """
