@@ -35,6 +35,9 @@ def error(msg):
     """
     # TODO: Your code here
     pass
+print("Display an error message")
+error_msg = input()
+print("Error!", f"{error_msg}""!")
 
 
 def progress(operation, value):
