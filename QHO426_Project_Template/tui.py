@@ -60,7 +60,18 @@ def progress(operation, value):
     """
     # TODO: Your code here
     pass
+print("Enter the percentage of the operation: ")
+value = int(input())
+if (value == 0):
+    status = "has started"
 
+elif (value < 100) and (value > 0):
+    status = "in progress"
+
+else:
+    status = "has completed"
+
+print("Operation {}".format(status))
 
 def menu(variant=0):
     """
