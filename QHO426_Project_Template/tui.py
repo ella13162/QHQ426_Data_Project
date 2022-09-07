@@ -20,7 +20,7 @@ def welcome():
     """
     # TODO: Your code here
     pass
-print("------------------------\nWELCOME TO COVID-19 DATA\n------------------------")
+print("","-"*24,"\n WELCOME TO COVID-19 DATA\n","-"*24)
 
 def error(msg):
     """
@@ -60,18 +60,19 @@ def progress(operation, value):
     """
     # TODO: Your code here
     pass
+
 print("Enter the percentage of the operation: ")
 value = int(input())
 if (value == 0):
-    status = "has started"
+    operation = "has started."
 
 elif (value < 100) and (value > 0):
-    status = "in progress"
+    operation = "in progress."
 
 else:
-    status = "has completed"
+    operation = "has completed."
 
-print("Operation {}".format(status))
+print("Operation status {}".format(operation))
 
 def menu(variant=0):
     """
@@ -105,8 +106,22 @@ def menu(variant=0):
     """
     # TODO: Your code here
     pass
-
-
+variant = int(input("Enter varaiant from the following: \n0 - Data centre\n1 - Records and data observation\n2 - Data charts\n3 - All data or specific Region data\n"))
+if variant == 0:
+    print("To display menu press number from the following:")
+    print("[1] Process Data\n[2] Visualise Data\n[3] Export Data\n[4] Exit")
+elif variant == 1:
+    print("To display menu press number from the following:")
+    print("[1] Record by Serial Number\n[2] Records by Observation Date\n[3] Group Records by Country/Region\n[4] Summarise Records")
+elif variant == 2:
+    print("To display menu press number from the following:")
+    print("[1] Country/Region Pie Chart\n[2] Observations Chart\n[3] Animated Summary")
+elif variant == 3:
+    print("To display menu press number from the following:")
+    print("[1] All Data\n[2] Data for Specific Country/Region")
+else:
+    print("Error! Incorrect option pressed, try again!")
+    
 def total_records(num_records):
     f"""
     Task 5: Display the total number of records in the data set.
@@ -122,7 +137,14 @@ def total_records(num_records):
     """
     # TODO: Your code here
     pass
-
+import csv
+with open('covid19_dataset.csv') as csv_file:
+    num_records =0
+    csv_reader = csv.reader(csv_file)
+    for rows in csv_reader:
+        num_records += 1
+        print(num_records)
+        print(f"There are {num_records} records in the data set.")
 
 def serial_number():
     """
@@ -135,7 +157,12 @@ def serial_number():
     """
     # TODO: Your code here
     pass
-
+import csv
+with open('covid19_dataset.csv') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    for rows in csv_reader:
+        serial_numb = int(input())
+return (serial_numb)###why is this happening?
 
 def observation_dates():
     """
