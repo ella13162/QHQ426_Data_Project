@@ -6,7 +6,7 @@ A function may also need to format and/or structure a response e.g. return a lis
 Any errors or invalid inputs should be handled appropriately.
 Please note that you do not need to read the data file or perform any other such processing in this module.
 """
-
+import csv
 
 def welcome():
     """
@@ -19,8 +19,9 @@ def welcome():
     :return: Does not return anything.
     """
     # TODO: Your code here
+    print("", "-" * 24, "\n WELCOME TO COVID-19 DATA\n", "-" * 24)
     pass
-print("","-"*24,"\n WELCOME TO COVID-19 DATA\n","-"*24)
+
 
 def error(msg):
     """
@@ -34,10 +35,13 @@ def error(msg):
     :return: does not return anything
     """
     # TODO: Your code here
+    print("Display an error message")
+    error_msg = input()
+    print("Error!", f"{error_msg}""!")
+    return
+
     pass
-print("Display an error message")
-error_msg = input()
-print("Error!", f"{error_msg}""!")
+
 
 
 def progress(operation, value):
@@ -59,20 +63,20 @@ def progress(operation, value):
     :return: does not return anything
     """
     # TODO: Your code here
+    print("Enter the percentage of the operation: ")
+    value = int(input())
+    if (value == 0):
+        operation = "has started."
+
+    elif (value < 100) and (value > 0):
+        operation = "in progress."
+
+    else:
+        operation = "has completed."
+
+    print("Operation status {}".format(operation))
+    return
     pass
-
-print("Enter the percentage of the operation: ")
-value = int(input())
-if (value == 0):
-    operation = "has started."
-
-elif (value < 100) and (value > 0):
-    operation = "in progress."
-
-else:
-    operation = "has completed."
-
-print("Operation status {}".format(operation))
 
 def menu(variant=0):
     """
@@ -105,22 +109,25 @@ def menu(variant=0):
     :return: nothing if invalid selection otherwise an integer for a valid selection
     """
     # TODO: Your code here
+    variant = int(input(
+        "Enter varaiant from the following: \n0 - Data centre\n1 - Records and data observation\n2 - Data charts\n3 - All data or specific Region data\n"))
+    if variant == 0:
+        print("To display menu press number from the following:")
+        print("[1] Process Data\n[2] Visualise Data\n[3] Export Data\n[4] Exit")
+    elif variant == 1:
+        print("To display menu press number from the following:")
+        print(
+            "[1] Record by Serial Number\n[2] Records by Observation Date\n[3] Group Records by Country/Region\n[4] Summarise Records")
+    elif variant == 2:
+        print("To display menu press number from the following:")
+        print("[1] Country/Region Pie Chart\n[2] Observations Chart\n[3] Animated Summary")
+    elif variant == 3:
+        print("To display menu press number from the following:")
+        print("[1] All Data\n[2] Data for Specific Country/Region")
+    else:
+        print("Error! Incorrect option pressed, try again!")
     pass
-variant = int(input("Enter varaiant from the following: \n0 - Data centre\n1 - Records and data observation\n2 - Data charts\n3 - All data or specific Region data\n"))
-if variant == 0:
-    print("To display menu press number from the following:")
-    print("[1] Process Data\n[2] Visualise Data\n[3] Export Data\n[4] Exit")
-elif variant == 1:
-    print("To display menu press number from the following:")
-    print("[1] Record by Serial Number\n[2] Records by Observation Date\n[3] Group Records by Country/Region\n[4] Summarise Records")
-elif variant == 2:
-    print("To display menu press number from the following:")
-    print("[1] Country/Region Pie Chart\n[2] Observations Chart\n[3] Animated Summary")
-elif variant == 3:
-    print("To display menu press number from the following:")
-    print("[1] All Data\n[2] Data for Specific Country/Region")
-else:
-    print("Error! Incorrect option pressed, try again!")
+
     
 def total_records(num_records):
     f"""
@@ -136,15 +143,16 @@ def total_records(num_records):
     :return: Does not return anything
     """
     # TODO: Your code here
+
+    with open('covid19_dataset.csv') as csv_file:
+        num_records =0
+        csv_reader = csv.reader(csv_file)
+        for rows in csv_reader:
+            num_records += 1
+            print(num_records)
+            print(f"There are {num_records} records in the data set.")
+    return
     pass
-import csv
-with open('covid19_dataset.csv') as csv_file:
-    num_records =0
-    csv_reader = csv.reader(csv_file)
-    for rows in csv_reader:
-        num_records += 1
-        print(num_records)
-        print(f"There are {num_records} records in the data set.")
 
 def serial_number():
     """
@@ -156,13 +164,11 @@ def serial_number():
     :return: the serial number for a record
     """
     # TODO: Your code here
+    print("Enter serial number: ")
+    serial_numb = int(input)
+    return serial_numb
     pass
-import csv
-with open('covid19_dataset.csv') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    for rows in csv_reader:
-        serial_numb = int(input())
-return (serial_numb)###why is this happening?
+
 
 def observation_dates():
     """
@@ -176,6 +182,16 @@ def observation_dates():
     :return: a list of observation dates
     """
     # TODO: Your code here
+    status = True
+    dates = []
+    while status == True:
+        print("Print observation data in format dd/mm/yyyy: ")
+        ex_data = str(input())
+        dates.append(ex_data)
+    else:
+        print("Incorrect format of data.")
+    return dates
+
     pass
 
 
