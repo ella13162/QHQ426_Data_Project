@@ -7,6 +7,7 @@ Any errors or invalid inputs should be handled appropriately.
 Please note that you do not need to read the data file or perform any other such processing in this module.
 """
 import csv
+import string
 
 def welcome():
     """
@@ -20,7 +21,7 @@ def welcome():
     """
     # TODO: Your code here
     print("", "-" * 24, "\n WELCOME TO COVID-19 DATA\n", "-" * 24)
-    pass
+
 
 
 def error(msg):
@@ -39,10 +40,6 @@ def error(msg):
     error_msg = input()
     print("Error!", f"{error_msg}""!")
     return
-
-    pass
-
-
 
 def progress(operation, value):
     """
@@ -76,7 +73,6 @@ def progress(operation, value):
 
     print("Operation status {}".format(operation))
     return
-    pass
 
 def menu(variant=0):
     """
@@ -126,7 +122,6 @@ def menu(variant=0):
         print("[1] All Data\n[2] Data for Specific Country/Region")
     else:
         print("Error! Incorrect option pressed, try again!")
-    pass
 
     
 def total_records(num_records):
@@ -152,7 +147,6 @@ def total_records(num_records):
             print(num_records)
             print(f"There are {num_records} records in the data set.")
     return
-    pass
 
 def serial_number():
     """
@@ -167,8 +161,6 @@ def serial_number():
     print("Enter serial number: ")
     serial_numb = int(input)
     return serial_numb
-    pass
-
 
 def observation_dates():
     """
@@ -188,11 +180,15 @@ def observation_dates():
         print("Print observation data in format dd/mm/yyyy: ")
         ex_data = str(input())
         dates.append(ex_data)
-    else:
-        print("Incorrect format of data.")
-    return dates
-
-    pass
+        print("Do you like to proceed the action?\n enter y for ""Yes"" to continue, and n for ""No"" to end the process")
+        answer = input()
+        if answer.lower() == 'y':
+            status = True
+            print(status)
+        elif answer.lower() == 'n':
+            print(ex_data)
+            status = False
+            return dates
 
 
 def display_record(record, cols=None):
@@ -221,7 +217,20 @@ def display_record(record, cols=None):
     :return: Does not return anything
     """
     # TODO: Your code here
-    pass
+    record = {"Serial Number":[], "Province/ State":[], "Country":[], "Last Update":[], "Confirmed":[],"Deaths":[], "Recovered":[]}
+    with open('covid19_dataset.csv') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        next(csv_reader)
+        for row in csv_reader:
+            if row[0] != "" and row[1] != "" and row[2] != "" and row[3] != "" and row[4] != "" and row[5] != "" and row[6] != "":
+                record["Serial Number"].append(row[0].strip())
+                record["Province/ State"].append(row[1].strip())
+                record["Country"].append(row[2].strip())
+                record["Last Update"].append(row[3].strip())
+                record["Confirmed"].append(row[4].strip())
+                record["Deaths"].append(row[5].strip())
+                record["Recovered"].append(row[6].strip())
+
 
 
 def display_records():
