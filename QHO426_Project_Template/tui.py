@@ -217,22 +217,12 @@ def display_record(record, cols=None):
     :return: Does not return anything
     """
     # TODO: Your code here
-    record = {"Serial Number":[], "Province/ State":[], "Country":[], "Last Update":[], "Confirmed":[],"Deaths":[], "Recovered":[]}
-    with open('covid19_dataset.csv') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        next(csv_reader)
-        for row in csv_reader:
-            if row[0] != "" and row[1] != "" and row[2] != "" and row[3] != "" and row[4] != "" and row[5] != "" and row[6] != "":
-                record["Serial Number"].append(row[0].strip())
-                record["Province/ State"].append(row[1].strip())
-                record["Country"].append(row[2].strip())
-                record["Last Update"].append(row[3].strip())
-                record["Confirmed"].append(row[4].strip())
-                record["Deaths"].append(row[5].strip())
-                record["Recovered"].append(row[6].strip())
+    for data in record:
+        record = []
+        cols = []
+        print()
 
-
-
+    pass
 def display_records():
     """
     Task 9: Display each record in the specified list of records.
