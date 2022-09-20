@@ -32,7 +32,7 @@ def run():
     # - Use the appropriate functions in the module 'tui' to display a message to indicate how many records have
     # been loaded and that the data loading operation has completed.
     # TODO: Your code here
-    progress(operation=1,)
+
 
     while True:
         # Task 14: Using the appropriate function in the module 'tui', display a menu of options

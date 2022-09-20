@@ -6,7 +6,7 @@ A function may also need to format and/or structure a response e.g. return a lis
 Any errors or invalid inputs should be handled appropriately.
 Please note that you do not need to read the data file or perform any other such processing in this module.
 """
-import csv
+import csv, random
 import string
 
 def welcome():
@@ -105,24 +105,38 @@ def menu(variant=0):
     :return: nothing if invalid selection otherwise an integer for a valid selection
     """
     # TODO: Your code here
-    variant = int(input(
-        "Enter varaiant from the following: \n0 - Data centre\n1 - Records and data observation\n2 - Data charts\n3 - All data or specific Region data\n"))
+    print("Choose variant from the following: \n0 - Data centre\n1 - Records and data observation\n2 - Data charts\n3 - All data or specific Region data\n")
+    variant = int(input("Your variant: "))
     if variant == 0:
         print("To display menu press number from the following:")
         print("[1] Process Data\n[2] Visualise Data\n[3] Export Data\n[4] Exit")
+        opt = int(input("Your option: "))
+        if opt in [1,2,3]:
+            return opt
+
     elif variant == 1:
         print("To display menu press number from the following:")
         print(
             "[1] Record by Serial Number\n[2] Records by Observation Date\n[3] Group Records by Country/Region\n[4] Summarise Records")
+        opt = int(input("Your option: "))
+        if opt in [1, 2, 3, 4]:
+            return opt
     elif variant == 2:
         print("To display menu press number from the following:")
         print("[1] Country/Region Pie Chart\n[2] Observations Chart\n[3] Animated Summary")
+        opt = int(input("Your option: "))
+        if opt in [1, 2, 3]:
+            return opt
     elif variant == 3:
         print("To display menu press number from the following:")
         print("[1] All Data\n[2] Data for Specific Country/Region")
+        opt = int(input("Your option: "))
+        if opt in [1, 2]:
+            return opt
     else:
         print("Error! Incorrect option pressed, try again!")
-
+    if variant in [0,1,2,3]:
+        return variant
     
 def total_records(num_records):
     f"""
@@ -218,11 +232,13 @@ def display_record(record, cols=None):
     """
     # TODO: Your code here
     for data in record:
-        record = []
-        cols = []
-        print()
+        record = {}
+    for i in cols(8):
+        cols = int(input("Which column Should I display?"))
+        record.reader(cols)
+        print(record)
+    return
 
-    pass
 def display_records():
     """
     Task 9: Display each record in the specified list of records.
@@ -249,3 +265,17 @@ def display_records():
     :return: Does not return anything
     """
     # TODO: Your code here
+    record = {"Serial Number": [], "Province/ State": [], "Country": [], "Last Update": [], "Confirmed": [],
+              "Deaths": [], "Recovered": []}
+    with open('covid19_dataset.csv') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        next(csv_reader)
+        for cols in csv_reader:
+            if cols[0] != "" and cols[1] != "" and cols[2] != "" and cols[3] != "" and cols[4] != "" and cols[5] != "" and cols[6] != "":
+                record["Serial Number"].append(cols[0].strip())
+                record["Province/ State"].append(cols[1].strip())
+                record["Country"].append(cols[2].strip())
+                record["Last Update"].append(cols[3].strip())
+                record["Confirmed"].append(cols[4].strip())
+                record["Deaths"].append(cols[5].strip())
+                record["Recovered"].append(cols[6].strip())
