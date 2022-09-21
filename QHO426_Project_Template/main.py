@@ -17,7 +17,6 @@ from tui import *
 # This will be used to store the data read from the source data file.
 # TODO: Your code here
 covid_records = []
-
 def run():
     # Task 12: Call the function welcome of the module 'tui'.
     # This will display our welcome message when the program is executed.
@@ -32,7 +31,7 @@ def run():
     # - Use the appropriate functions in the module 'tui' to display a message to indicate how many records have
     # been loaded and that the data loading operation has completed.
     # TODO: Your code here
-
+    progress(value=0, operation=True)
 
     while True:
         # Task 14: Using the appropriate function in the module 'tui', display a menu of options

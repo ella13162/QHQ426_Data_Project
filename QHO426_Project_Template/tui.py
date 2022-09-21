@@ -194,7 +194,8 @@ def observation_dates():
         print("Print observation data in format dd/mm/yyyy: ")
         ex_data = str(input())
         dates.append(ex_data)
-        print("Do you like to proceed the action?\n enter y for ""Yes"" to continue, and n for ""No"" to end the process")
+        print(
+            "Do you like to proceed the action?\n enter y for ""Yes"" to continue, and n for ""No"" to end the process")
         answer = input()
         if answer.lower() == 'y':
             status = True
@@ -231,8 +232,18 @@ def display_record(record, cols=None):
     :return: Does not return anything
     """
     # TODO: Your code here
-    for data in record:
-        record = {}
+    print("Enter observation date record in format dd/mm/yyyy e.g. 01/22/2020 ")
+    record = []
+    record = input()
+    for cols in record:
+        in range(0, 1, 2, 3, 4, 5, 6, 7) in
+        cols = (int(input("Enter column index:")))
+        if cols[].upper() == record.upper():
+            print(date)
+            return
+    print("No such date in the list!")
+
+    record = []
     for i in cols(8):
         cols = int(input("Which column Should I display?"))
         record.reader(cols)
