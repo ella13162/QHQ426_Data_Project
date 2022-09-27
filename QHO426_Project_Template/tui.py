@@ -7,7 +7,7 @@ Any errors or invalid inputs should be handled appropriately.
 Please note that you do not need to read the data file or perform any other such processing in this module.
 """
 import csv, random
-import string
+
 
 def welcome():
     """
@@ -23,7 +23,6 @@ def welcome():
     print("", "-" * 24, "\n WELCOME TO COVID-19 DATA\n", "-" * 24)
 
 
-
 def error(msg):
     """
     Task 2: Display an error message.
@@ -37,9 +36,10 @@ def error(msg):
     """
     # TODO: Your code here
     print("Display an error message")
-    error_msg = input()
-    print("Error!", f"{error_msg}""!")
+    msg = input()
+    print("Error!", f"{msg}""!")
     return
+
 
 def progress(operation, value):
     """
@@ -73,6 +73,7 @@ def progress(operation, value):
 
     print("Operation status {}".format(operation))
     return
+
 
 def menu(variant=0):
     """
@@ -111,13 +112,12 @@ def menu(variant=0):
         print("To display menu press number from the following:")
         print("[1] Process Data\n[2] Visualise Data\n[3] Export Data\n[4] Exit")
         opt = int(input("Your option: "))
-        if opt in [1,2,3]:
+        if opt in [1, 2, 3]:
             return opt
 
     elif variant == 1:
         print("To display menu press number from the following:")
-        print(
-            "[1] Record by Serial Number\n[2] Records by Observation Date\n[3] Group Records by Country/Region\n[4] Summarise Records")
+        print("[1] Record by Serial Number\n[2] Records by Observation Date\n[3] Group Records by Country/Region\n[4] Summarise Records")
         opt = int(input("Your option: "))
         if opt in [1, 2, 3, 4]:
             return opt
@@ -135,9 +135,10 @@ def menu(variant=0):
             return opt
     else:
         print("Error! Incorrect option pressed, try again!")
-    if variant in [0,1,2,3]:
+    if variant in [0, 1, 2, 3]:
         return variant
-    
+
+
 def total_records(num_records):
     f"""
     Task 5: Display the total number of records in the data set.
@@ -154,13 +155,14 @@ def total_records(num_records):
     # TODO: Your code here
 
     with open('covid19_dataset.csv') as csv_file:
-        num_records =0
+        num_records = 0
         csv_reader = csv.reader(csv_file)
         for rows in csv_reader:
             num_records += 1
             print(num_records)
             print(f"There are {num_records} records in the data set.")
     return
+
 
 def serial_number():
     """
@@ -175,6 +177,7 @@ def serial_number():
     print("Enter serial number: ")
     serial_numb = int(input)
     return serial_numb
+
 
 def observation_dates():
     """
@@ -194,16 +197,16 @@ def observation_dates():
         print("Print observation data in format dd/mm/yyyy: ")
         ex_data = str(input())
         dates.append(ex_data)
-        print(
-            "Do you like to proceed the action?\n enter y for ""Yes"" to continue, and n for ""No"" to end the process")
+        print("Do you like to proceed the action?\n enter y for ""Yes"" to continue, and n for ""No"" to end the process")
         answer = input()
         if answer.lower() == 'y':
             status = True
             print(status)
+            print(dates)
         elif answer.lower() == 'n':
             print(ex_data)
             status = False
-            return dates
+    return dates
 
 
 def display_record(record, cols=None):
@@ -232,23 +235,18 @@ def display_record(record, cols=None):
     :return: Does not return anything
     """
     # TODO: Your code here
-    print("Enter observation date record in format dd/mm/yyyy e.g. 01/22/2020 ")
-    record = []
-    record = input()
-    for cols in record:
-        in range(0, 1, 2, 3, 4, 5, 6, 7) in
-        cols = (int(input("Enter column index:")))
-        if cols[].upper() == record.upper():
-            print(date)
-            return
-    print("No such date in the list!")
-
-    record = []
-    for i in cols(8):
-        cols = int(input("Which column Should I display?"))
-        record.reader(cols)
+    record =[]
+    cols =[]
+    print("Enter column number: ")
+    cols = int(input())
+    if cols is None or len(cols) == 0:
         print(record)
+    else:
+        record = list(record[i] for i in cols)
+        print(record)
+
     return
+
 
 def display_records():
     """
@@ -276,17 +274,22 @@ def display_records():
     :return: Does not return anything
     """
     # TODO: Your code here
-    record = {"Serial Number": [], "Province/ State": [], "Country": [], "Last Update": [], "Confirmed": [],
-              "Deaths": [], "Recovered": []}
-    with open('covid19_dataset.csv') as csv_file:
-        csv_reader = csv.reader(csv_file)
-        next(csv_reader)
-        for cols in csv_reader:
-            if cols[0] != "" and cols[1] != "" and cols[2] != "" and cols[3] != "" and cols[4] != "" and cols[5] != "" and cols[6] != "":
-                record["Serial Number"].append(cols[0].strip())
-                record["Province/ State"].append(cols[1].strip())
-                record["Country"].append(cols[2].strip())
-                record["Last Update"].append(cols[3].strip())
-                record["Confirmed"].append(cols[4].strip())
-                record["Deaths"].append(cols[5].strip())
-                record["Recovered"].append(cols[6].strip())
+    records = []
+    cols = None
+    if cols is None or len(cols) == 0:
+        print(records)
+    for cols in records:
+        records["Serial Number"].append(cols[0].strip())
+        records["Province/ State"].append(cols[1].strip())
+        records["Country"].append(cols[2].strip())
+        records["Last Update"].append(cols[3].strip())
+        records["Confirmed"].append(cols[4].strip())
+        records["Deaths"].append(cols[5].strip())
+        records["Recovered"].append(cols[6].strip())
+    for i in cols:
+        print("Enter column number to display record: ")
+        i = int(input())
+        print(records(i))
+
+
+

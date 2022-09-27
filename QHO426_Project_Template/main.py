@@ -115,6 +115,7 @@ def run():
         # Task 27: If the user selected an invalid option then use the appropriate function of the
         # module tui to display an error message
         # TODO: Your code here
+        error()
 
         pass  # can remove
 
