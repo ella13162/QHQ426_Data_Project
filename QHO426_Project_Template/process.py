@@ -24,5 +24,30 @@ The required functions are as follows:
 
  
 """
+import csv
+from tui import *
+record = {"Serial Number":[], "Province/ State":[], "Country":[], "Last Update":[], "Confirmed":[],"Deaths":[], "Recovered":[]}
+with open("covid19_dataset.csv") as csv_file:
+    csv_reader = csv.reader(csv_file)
+    next(csv_reader)
+    for cols in csv_reader:
+        if cols[0] != "" and cols[1] != "" and cols[2] != "" and cols[3] != "" and cols[4] != "" and cols[5] != "" and cols[6] != "":
+            record["Serial Number"].append(cols[0].strip())
+            record["Province/ State"].append(cols[1].strip())
+            record["Country"].append(cols[2].strip())
+            record["Last Update"].append(cols[3].strip())
+            record["Confirmed"].append(cols[4].strip())
+            record["Deaths"].append(cols[5].strip())
+            record["Recovered"].append(cols[6].strip())
+print(total_records())
+print("Confirmed cases: ")
+with open("covid19_dataset.csv") as csv_file:
+    confirmed_cases = 0
+    csv_reader = csv.reader(csv_file)
+    for cols in csv_reader:
+        print(cols[4])
+        cols =+ int(cols.read)
+
+
 
 # TODO: Your code here

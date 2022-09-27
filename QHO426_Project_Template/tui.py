@@ -6,7 +6,7 @@ A function may also need to format and/or structure a response e.g. return a lis
 Any errors or invalid inputs should be handled appropriately.
 Please note that you do not need to read the data file or perform any other such processing in this module.
 """
-import csv, random
+import csv
 
 
 def welcome():
@@ -36,8 +36,8 @@ def error(msg):
     """
     # TODO: Your code here
     print("Display an error message")
-    msg = input()
-    print("Error!", f"{msg}""!")
+    error_msg = input()
+    print("Error!", f"{error_msg}""!")
     return
 
 
@@ -106,7 +106,8 @@ def menu(variant=0):
     :return: nothing if invalid selection otherwise an integer for a valid selection
     """
     # TODO: Your code here
-    print("Choose variant from the following: \n0 - Data centre\n1 - Records and data observation\n2 - Data charts\n3 - All data or specific Region data\n")
+    print("Choose variant from the following: \n0 - Data centre\n1 - Records and data observation")
+    print("2 - Data charts\n3 - All data or specific Region data\n")
     variant = int(input("Your variant: "))
     if variant == 0:
         print("To display menu press number from the following:")
@@ -117,7 +118,8 @@ def menu(variant=0):
 
     elif variant == 1:
         print("To display menu press number from the following:")
-        print("[1] Record by Serial Number\n[2] Records by Observation Date\n[3] Group Records by Country/Region\n[4] Summarise Records")
+        print("[1] Record by Serial Number\n[2] Records by Observation Date")
+        print("[3] Group Records by Country/Region\n[4] Summarise Records")
         opt = int(input("Your option: "))
         if opt in [1, 2, 3, 4]:
             return opt
@@ -159,8 +161,8 @@ def total_records(num_records):
         csv_reader = csv.reader(csv_file)
         for rows in csv_reader:
             num_records += 1
-            print(num_records)
-            print(f"There are {num_records} records in the data set.")
+            #print(num_records)
+        print(f"There are {num_records} records in the data set.")
     return
 
 
@@ -174,8 +176,13 @@ def serial_number():
     :return: the serial number for a record
     """
     # TODO: Your code here
+    #data =[]
     print("Enter serial number: ")
-    serial_numb = int(input)
+    serial_numb = int(input())
+    #for record in data:
+        #if serial_numb == record[0]:
+            #print(record)
+    print(serial_numb)
     return serial_numb
 
 
@@ -197,7 +204,8 @@ def observation_dates():
         print("Print observation data in format dd/mm/yyyy: ")
         ex_data = str(input())
         dates.append(ex_data)
-        print("Do you like to proceed the action?\n enter y for ""Yes"" to continue, and n for ""No"" to end the process")
+        print("Do you like to proceed the action? ")
+        print("Enter y for ""Yes"" to continue, and n for ""No"" to end the process")
         answer = input()
         if answer.lower() == 'y':
             status = True
@@ -206,6 +214,7 @@ def observation_dates():
         elif answer.lower() == 'n':
             print(ex_data)
             status = False
+    print(dates)
     return dates
 
 
@@ -235,16 +244,13 @@ def display_record(record, cols=None):
     :return: Does not return anything
     """
     # TODO: Your code here
-    record =[]
-    cols =[]
-    print("Enter column number: ")
-    cols = int(input())
-    if cols is None or len(cols) == 0:
-        print(record)
-    else:
-        record = list(record[i] for i in cols)
-        print(record)
 
+    for i in cols:
+        record = list(record[i])
+        print(record)
+    for cols = None or cols == 0:
+        # if cols is None (0)
+        print(record)
     return
 
 
@@ -275,7 +281,7 @@ def display_records():
     """
     # TODO: Your code here
     records = []
-    cols = None
+    cols = []
     if cols is None or len(cols) == 0:
         print(records)
     for cols in records:
