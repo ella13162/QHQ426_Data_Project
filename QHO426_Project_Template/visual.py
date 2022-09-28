@@ -15,7 +15,6 @@ Each function should visualise the data using Matplotlib.
 
 # TODO: Your code here
 import matplotlib.pyplot as plt
-import csv
 from tui import *
 def pie_chart(summary):
     countries = []

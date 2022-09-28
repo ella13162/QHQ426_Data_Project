@@ -24,30 +24,47 @@ The required functions are as follows:
 
  
 """
-import csv
 from tui import *
-record = {"Serial Number":[], "Province/ State":[], "Country":[], "Last Update":[], "Confirmed":[],"Deaths":[], "Recovered":[]}
-with open("covid19_dataset.csv") as csv_file:
-    csv_reader = csv.reader(csv_file)
-    next(csv_reader)
-    for cols in csv_reader:
-        if cols[0] != "" and cols[1] != "" and cols[2] != "" and cols[3] != "" and cols[4] != "" and cols[5] != "" and cols[6] != "":
-            record["Serial Number"].append(cols[0].strip())
-            record["Province/ State"].append(cols[1].strip())
-            record["Country"].append(cols[2].strip())
-            record["Last Update"].append(cols[3].strip())
-            record["Confirmed"].append(cols[4].strip())
-            record["Deaths"].append(cols[5].strip())
-            record["Recovered"].append(cols[6].strip())
-print(total_records())
-print("Confirmed cases: ")
-with open("covid19_dataset.csv") as csv_file:
-    confirmed_cases = 0
-    csv_reader = csv.reader(csv_file)
-    for cols in csv_reader:
-        print(cols[4])
-        cols =+ int(cols.read)
+def retrieve_total_number(records):
+    return len(records)
 
+def retrieve_rec_serial_number(records, serial_number):
+    for j in records:
+        if int(j[0]) == serial_number:
+            return j
+    return -1
+def retrieve_observation_date(records, dates):
+    record_by_date = dict()
+    retrieve_date = []
+    for r in records:
+        if r[1] in record_by_date:
+            record_by_date[r[1]].append(r)
+        else:
+            record_by_date[r[1]] = [r]
+    for d in dates:
+        if d in retrieve_date:
+            retrieve_date += record_by_date[d]
+    return retrieve_date
 
+def retrieve_terytory(records):
+    record_by_country = dict()
+    for r in records:
+        if r[3] in record_by_country:
+            record_by_country[r[3]].append(r)
+        else:
+            record_by_country[r[3]] = [r]
+    return record_by_country
 
-# TODO: Your code here
+def summary_all_records(records):
+    record_by_country = retrieve_terytory(records)
+    summary_rec = dict()
+    for country in record_by_country:
+        summary_rec[country] = {"Confirmed": 0, "Deaths": 0, "Recoveries": 0}
+    for country in record_by_country:
+        count_record = record_by_country[country]
+        for r in count_record:
+            summary_rec[country]["Confirmed"] += int(r[5])
+            summary_rec[country]["Deaths"] += int(r[6])
+            summary_rec[country]["Recoveries"] += int(r[7])
+    return summary_rec
+
