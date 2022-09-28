@@ -244,17 +244,14 @@ def display_record(record, cols=None):
     :return: Does not return anything
     """
     # TODO: Your code here
-
-    for i in cols:
-        record = list(record[i])
+    if cols is None or len(cols) == 0:
         print(record)
-    for cols = None or cols == 0:
-        # if cols is None (0)
-        print(record)
-    return
+    else:
+        tmp_record = list(record[i] for i in cols)
+        print(tmp_record)
 
 
-def display_records():
+def display_records(record, cols = None):
     """
     Task 9: Display each record in the specified list of records.
     Only the data for the specified column indexes will be displayed.
@@ -281,21 +278,28 @@ def display_records():
     """
     # TODO: Your code here
     records = []
-    cols = []
-    if cols is None or len(cols) == 0:
-        print(records)
-    for cols in records:
-        records["Serial Number"].append(cols[0].strip())
-        records["Province/ State"].append(cols[1].strip())
-        records["Country"].append(cols[2].strip())
-        records["Last Update"].append(cols[3].strip())
-        records["Confirmed"].append(cols[4].strip())
-        records["Deaths"].append(cols[5].strip())
-        records["Recovered"].append(cols[6].strip())
-    for i in cols:
-        print("Enter column number to display record: ")
-        i = int(input())
-        print(records(i))
+    for record in records:
+        display_record(record, cols)
 
+def country_name(countries):
+    print("Enter country name among belows:")
+    for country in countries:
+        print(country)
+    while True:
+        name = input("Enter Country Name: ")
+        name = name.strip(' ')
+        if name in countries:
+            return name
+        else:
+            error("Wrong country name entered! Please, Try again.")
+
+def display_by_country(records_by_countries, cols=None):
+    for country in records_by_countries:
+        print(f"Country: {country}")
+        display_records(records_by_countries[country], cols)
+
+def display_summary(summary):
+    for country in summary:
+        print(f"Country:{country} , Confirmed:{summary[country]['confirmed']} , Deaths:{summary[country]['deaths']} , Recoveries:{summary[country]['recoveries']}")
 
 
